@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function commentsDialog() {
+   //Get the values to pass into the dialog
+   //var comments_text = g_form.getValue("comments");
+   //var short_text = g_form.getValue("short_description");
+
+   //Initialize and open the Dialog Window
+   //var dialog = new GlideDialogWindow("task_comments_dialogModal");
+	var dialog = new GlideDialogWindow("task_comments_dialogModal_Json");
+	//Render the dialog containing the UI Page 'task_comments_dialog'
+   dialog.setTitle("Filters Windows "); //Set the dialog title
+   dialog.setSize(750,200);
+   //dialog.setPreference("short_text", short_text); //Pass in short description for use in the dialog
+   dialog.render(); //Open the dialog
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_380481_test_nick_task_comments_dialog.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="jelly:core" xmlns:g2="glide" >
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+</style>	
+ <g:evaluate var="jvar_filter" object="true">
+	var obj=""; 
+    var filter = new GlideRecord('u_filter') ; 
+	filter.orderByDesc('sys_created_on');
+	filter.setLimit(1);
+	filter.query();
+	while (filter.next()){
+			var str=filter.getValue('u_filters')
+			var parser = new JSON();
+			obj = parser.decode(str);
+			gs.info("************DIALOG JSON 1 *************"  + obj.filterNew);
+			gs.info("************DIALOG JSON 2 *************"  + obj.filterClose);
+			filterNew=obj.filterNew;
+			gs.info("************DIALOG filterNew *************"  + obj.filterNew);
+	 }
+	 obj;
+  </g:evaluate>
+  <!--<j2:set var="jvar_test" value="${obj.filterNew}"/>	-->
+	<g2:ui_form>
+		<b> Active Filter New Incident : &#160;&#160;&#160; </b>
+	<j:choose>
+		<j:when test="${obj.filterNew == 'All'}">
+			<input type="text" style="text-align:center" size="50" name="jvar_test" value=" " readOnly="true"/>
+		</j:when>
+		<j:otherwise>
+			<input type="text" style="text-align:center" size="50" name="jvar_test" value="${obj.filterNew}" readOnly="true"/>
+		 </j:otherwise> 
+	</j:choose>	
+		
+	<b> &#160;&#160;&#160;  Active Filter Close Incident : &#160;&#160;&#160; </b>
+	<j:choose>
+		<j:when test="${obj.filterClose == 'All'}">
+			<input type="text" style="text-align:center" size="50" name="jvar_test" value=" " readOnly="true"/>
+		</j:when>
+		<j:otherwise>
+			<input type="text" style="text-align:center" size="50" name="jvar_test" value="${obj.filterClose}" readOnly="true"/>
+		 </j:otherwise> 
+		</j:choose>
+	</g2:ui_form>	
+<div align="right">
+			<button  onclick="commentsDialog()">Add Filters</button>
+		</div>
+
+<iframe src="/show_schedule_page.do?sysparm_page_schedule_type=incident_timeline" height="100%" width="100%"></iframe>	
+
+</j:jelly>]]></html>
+        <name>task_comments_dialog</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-01-16 13:23:29</sys_created_on>
+        <sys_id>f7396f32db160010617427374896199d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>task_comments_dialog</sys_name>
+        <sys_package display_value="test nick" source="x_380481_test_nick">4007ebbedbd200106174273748961981</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="test nick">4007ebbedbd200106174273748961981</sys_scope>
+        <sys_update_name>sys_ui_page_f7396f32db160010617427374896199d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-01-16 13:23:57</sys_updated_on>
+    </sys_ui_page>
+</record_update>

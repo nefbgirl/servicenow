@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function saveFilters() {
+	var shortDescrNew = document.getElementById('incident').value;
+	var shortDescrClose = document.getElementById('incident_close').value;
+	var jsonObj ={"filterNew": shortDescrNew, "filterClose": shortDescrClose};
+	
+	alert(shortDescrNew);
+	var rec = new GlideRecord('u_filter') ;
+	rec.initialize();
+	rec.u_filters=JSON.stringify(jsonObj);
+	//rec.u_short_descr_close = shortDescrClose;
+	//rec.u_short_descr_new = shortDescrNew;
+	//salvataggio nel db della tabella filter contenente campo short descr new
+	rec.insert();
+	//chiusure dalla windows
+	GlideDialogWindow.get().destroy();
+	location.reload(true);
+}
+
+function cancelFilters() {
+	document.getElementById("myForm").reset();
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_380481_test_nick_task_comments_dialogModal_Json.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="glide">
+ <g:evaluate var="jvar_incident" object="true">
+     var incident = new GlideRecord('incident');
+	 incident.addQuery('incident_state','1'); 
+	 incident.query();
+	 incident;
+  </g:evaluate>
+   <g2:evaluate var="jvar_incident_close" object="true">
+     var incident = new GlideRecord('incident');
+	 incident.addQuery('incident_state','7'); 
+	 incident.query();
+	 incident;
+  </g2:evaluate>
+	<!--<table style="width:600px; height: 80px;">-->
+	<form id="myForm">
+		<label for="incident" > Short Description New Incident &#160;&#160;&#160;</label>
+		<select name="incident" id="incident">
+		  <option value="All">ALL</option>
+		  <j:while test="${jvar_incident.next()}">
+			<option value="${jvar_incident.getValue('short_description')}">${jvar_incident.getValue('short_description')}</option>
+		  </j:while>  
+		</select>
+		<p></p>
+		<label for="incident_close" > Short Description Close Incident &#160;</label>
+		<select name="incident_close" id="incident_close">
+		  <option value="All">ALL</option>
+		  <j:while test="${jvar_incident_close.next()}">
+			<option value="${jvar_incident_close.getValue('short_description')}">${jvar_incident_close.getValue('short_description')}  </option>
+		  </j:while>  
+		</select>
+	</form>
+		<p align="right">
+		<button onclick="saveFilters()">Save</button>
+		<button onclick="cancelFilters()">Cancel</button>	
+		</p>	
+	<!--</table>-->	
+</j:jelly>]]></html>
+        <name>task_comments_dialogModal_Json</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-01-16 13:25:05</sys_created_on>
+        <sys_id>bbe92b72db16001061742737489619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>task_comments_dialogModal_Json</sys_name>
+        <sys_package display_value="test nick" source="x_380481_test_nick">4007ebbedbd200106174273748961981</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="test nick">4007ebbedbd200106174273748961981</sys_scope>
+        <sys_update_name>sys_ui_page_bbe92b72db16001061742737489619fa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-01-16 13:25:05</sys_updated_on>
+    </sys_ui_page>
+</record_update>
