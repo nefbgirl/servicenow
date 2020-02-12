@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>add_me</name>
+        <scoped_name>x_380481_test_nick_add_me</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-02-12 09:07:19</sys_created_on>
+        <sys_id>79c1f52fdbfe401061742737489619a3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>add_me</sys_name>
+        <sys_package display_value="test nick" source="x_380481_test_nick">4007ebbedbd200106174273748961981</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="test nick">4007ebbedbd200106174273748961981</sys_scope>
+        <sys_update_name>sys_ui_macro_79c1f52fdbfe401061742737489619a3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-02-12 09:07:19</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+   <j:set var="jvar_n" value="add_me_${ref}"/>
+   <span id="${jvar_n}" onclick="addMe('${ref}','${jvar_n}')"  alt="Add me" tabindex="0" class="btn btn-default icon-locked">
+      <span class="sr-only">Add me</span>
+   </span>
+
+   <g2:evaluate var="jvar_groups" expression="gs.getUser()" />
+	
+	<script>
+		//funzione chiamata dall'onload
+      function prova(value) {
+	   //alert(value);
+		 var idIcon=document.getElementById('add_me_incident.number');
+		 if(value==1){
+		 	//chiuso
+			//alert('chiuso caricamento');
+			idIcon.removeClassName('btn btn-default icon-unlocked');
+	     	idIcon.addClassName('btn btn-default icon-locked');
+			g_form.setReadOnly('description',true);
+		 }
+		else{
+			//aperto
+			//alert('else');
+		 	idIcon.removeClassName('btn btn-default icon-locked');
+		   	idIcon.addClassName('btn btn-default icon-unlocked');
+			g_form.setReadOnly('description',false);
+		}
+	  }
+   </script>
+
+   <script>
+      function addMe(reference,id) {
+	   
+	  //modifico icona
+	   var idIcon=document.getElementById(id);
+	   //alert('on');
+	   if (idIcon.classList.contains('icon-unlocked')) {
+	      //deve diventare chiuso
+	    //alert('if');
+	     idIcon.removeClassName('btn btn-default icon-unlocked');
+	     idIcon.addClassName('btn btn-default icon-locked');
+	   	//disibilitare i campi del form
+	   	g_form.setReadOnly('description',true);
+	   //salvataggio DELLA VARIABILE NASCOSTA NEL FORM
+	   
+	   }
+	   else if (idIcon.classList.contains('icon-locked')){
+	   		//alert('else');
+		   idIcon.removeClassName('btn btn-default icon-locked');
+		   idIcon.addClassName('btn btn-default icon-unlocked');
+	   			//abilitare i campi del form
+	    	g_form.setReadOnly('description',false);
+	   		 //salvataggio DELLA VARIABILE NASCOSTA NEL FORM
+	   }
+	   
+	   
+         
+      }
+   </script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>
