@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="cmn_timeline_page_style">
+    <cmn_timeline_page_style action="INSERT_OR_UPDATE">
+        <condition/>
+        <label_color display_value="#315D67">f6494cc3730033000b9dff603ef6a741</label_color>
+        <label_decoration/>
+        <order>100</order>
+        <span_color/>
+        <sys_class_name>cmn_timeline_page_style</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-01-16 13:34:53</sys_created_on>
+        <sys_id>3f1cebf2db1600106174273748961908</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="test nick" source="x_380481_test_nick">4007ebbedbd200106174273748961981</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="test nick">4007ebbedbd200106174273748961981</sys_scope>
+        <sys_update_name>cmn_timeline_page_style_3f1cebf2db1600106174273748961908</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-01-16 13:34:53</sys_updated_on>
+        <timeline_page display_value="x_380481_test_nick.test">785b6fb2db1600106174273748961947</timeline_page>
+    </cmn_timeline_page_style>
+</record_update>
